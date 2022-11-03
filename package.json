@@ -5,13 +5,17 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Osmer Eduardo Ruiz Mateus",
   "license": "ISC",
   "devDependencies": {
+    "colors": "^1.4.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^6.7.1",
+    "nodemon": "^2.0.20"
   }
 }
