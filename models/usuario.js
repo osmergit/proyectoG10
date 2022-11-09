@@ -1,11 +1,9 @@
 import mongoose from "mongoose";
-
-const usuarioSchema = new mongoose.Schema (
+const userSchema = new mongoose.Schema(
     {
-        nameuser: {
+        nomuser: {
             type: String,
-            require: true,
-            unique: true
+            require: true
         },
         password: {
             type: String,
@@ -15,7 +13,15 @@ const usuarioSchema = new mongoose.Schema (
             type: String,
             require: true,
             unique: true
-        },
-    }
+        }
+      
+
+    },
+    {
+        timestamps: true,
+        versionKey: false,
+   }
 );
-export default mongoose.model( "user", usuarioSchema);
+
+export const usuario = mongoose.model('users', userSchema);
+export default usuario;
