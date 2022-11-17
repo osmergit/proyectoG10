@@ -1,17 +1,10 @@
 import express from 'express';
-import {evento} from '../models/evento.js';
-
-import { regusuario, showuser, shuserone, deluser, upuser  } from '../controllers/userscontroller.js'
-import { regevento, sheventos, shevent, delevent, upevent } from '../controllers/ceventocontrollers.js'
-
+import { regusuario, showuser, shuserone, deluser, upuser  } from '../controllers/userscontroller.js';
+import { regevento, sheventos, shevent, delevent, upevent } from '../controllers/ceventocontrollers.js';
+import { login } from '../controllers/logincontrollers.js';
 import {db} from '../mongodb.js';
 
-
-
-
 export const router = express.Router();
-
-
 
 //Rutas para Mis eventos deportivos
 
@@ -25,10 +18,9 @@ router.put('/upevent/:id', upevent);
 router.post('/reguser', regusuario);
 router.get('/shuser', showuser);
 router.get('/shuser/:id', shuserone);
-router.delete('/deluser/:id',deluser);
+router.delete('/shuser/:id',deluser);
 router.put('/upuser/:id', upuser);
-
-
+router.post('/login', login);
 
 
 export default router;
