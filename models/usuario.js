@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import * as bcrypt from 'bcrypt';
+
+import { Valid } from '../vcorreo/estacorreobien.js'
 const userSchema = new mongoose.Schema(
     {
         nomuser: {
@@ -37,7 +39,7 @@ userSchema.pre('updateOne', function(next) {
     });
 */
 
-// Aca implementamos el Hash
+
 userSchema.pre('save', function(next) {
     const user = this
     const salt = bcrypt.genSaltSync(12);
@@ -45,9 +47,44 @@ userSchema.pre('save', function(next) {
     user.password = hash;
     next()
     });
-
-
-
+    /*, (error, hash) => {
+        user.password = hash
+        next()
+    })*/
+    
+    
+    
+    
+    
+    
+    
+    userSchema.statics.login = login;
+    
+    function login(correo,password) {
+        console.log('el correo es :',correo);
+        console.log('el password es :',password);
+        if (!Valid(correo)) { throw new Error('correo es invalido');}
+        
+        else {   return this.findOne({ correo })
+            .then(usuario => {
+                console.log(usuario);
+              if (!usuario) {
+                throw new Error('El correo no corresponde');
+               
+            }
+           
+             console.log('El valor del password es:', password);
+              const isMatch = bcrypt.compareSync(password, usuario.password);
+              console.log('El valor de la comparación del password es:',isMatch);
+              if (isMatch) {return true}
+              else{return false};
+             
+                  
+        
+        })}}
+      
+        
+    
 
 
 export const usuario = mongoose.model('users', userSchema);

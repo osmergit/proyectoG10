@@ -3,20 +3,21 @@ import { regusuario, showuser, shuserone, deluser, upuser  } from '../controller
 import { regevento, sheventos, shevent, delevent, upevent } from '../controllers/ceventocontrollers.js';
 import { login } from '../controllers/logincontrollers.js';
 import {db} from '../mongodb.js';
+import {requireToken} from '../midleware/auth.js'
 
 export const router = express.Router();
 
 //Rutas para Mis eventos deportivos
 
 router.post('/regevento', regevento );
-router.get('/shevents', sheventos);
+router.get('/shevents',requireToken, sheventos);
 router.get('/shevents/:id', shevent);
 router.delete('/delevent/:id', delevent);
 router.put('/upevent/:id', upevent);
 
 //rutas collection usuarios
 router.post('/reguser', regusuario);
-router.get('/shuser', showuser);
+router.get('/shuser',requireToken, showuser);
 router.get('/shuser/:id', shuserone);
 router.delete('/shuser/:id',deluser);
 router.put('/upuser/:id', upuser);
