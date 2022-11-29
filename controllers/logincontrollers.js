@@ -38,6 +38,16 @@ export const login = async (req,res) => {
 
 }
 
+
+
+
+
+
+
+
+
+
+
 export const loginjwt = async (req,res) => {
  if ((req.body.correo == 'admin') && (req.body.password == '123456')){
    const id = '63703e1f4bd191c9b4c6d816';
